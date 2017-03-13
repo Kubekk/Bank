@@ -4,3 +4,24 @@
 
 #include "Currency.h"
 
+bool Currency::operator<(const Currency &currency) {
+    return (*this).rate_ < currency.rate_;
+}
+
+bool Currency::operator>(const Currency &currency) {
+    return (*this).rate_ > currency.rate_;
+}
+
+const Currency& Currency::operator=(const Currency &currency) {
+    return currency;
+}
+
+std::ostream& operator<<(std::ostream &o, Currency &c) {
+    o << "Name of currency: " << c.name_ << std::endl;
+    return o;
+}
+
+std::ostream& operator<<(std::ostream &o, const Currency &c) {
+    o << "Name of currency: " << c.name_ << std::endl;
+    return o;
+}

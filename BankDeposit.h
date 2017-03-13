@@ -6,6 +6,8 @@
 
 
 #include "Currency.h"
+#include "Utility.h"
+
 #define DEFAULT_DURATION 30
 #define DEFAULT_CAPITALIZATION_TIME 30
 
@@ -14,17 +16,18 @@ class BankDeposit {
     float balance_;
     float rate_;
     unsigned duration_;
-    Currency *currency_;
+    const Currency *currency_;
     unsigned capitalizationTime_;
 
 
 public:
-    BankDeposit(const Currency &initCurrency)
+    BankDeposit(Currency *initCurrency)
             : BankDeposit(0.0f, 0.0f, DEFAULT_DURATION, initCurrency, DEFAULT_CAPITALIZATION_TIME) {
     }
-    BankDeposit(float initBalance, float initRate, unsigned const initDuration, const Currency &initCurrency, unsigned const initCapitalizationTime)
-            : balance_(initBalance), rate_(initRate), duration_(initDuration), capitalizationTime_(initCapitalizationTime) {
-        currency_ = new Currency(initCurrency);
+    BankDeposit(float initBalance, float initRate, unsigned const initDuration, Currency *initCurrency, unsigned const initCapitalizationTime)
+            : rate_(initRate), duration_(initDuration), capitalizationTime_(initCapitalizationTime), currency_(initCurrency) {
+            balance_ = Utility::roundTo2Places(initBalance);
+
     }
     virtual ~BankDeposit() {}
 
@@ -45,7 +48,7 @@ public:
      */
     float estimateEarnings(int duration);
 
-    void changeCurrency(const Currency &currency);
+    void changeCurrency(const Currency *currency);
 
 
 
@@ -53,6 +56,9 @@ public:
         return (balance_ == bankDeposit.balance_ && rate_ == bankDeposit.rate_
            && bankDeposit.duration_ == duration_ && currency_ == bankDeposit.currency_);
     }
+
+    friend std::ostream& operator<<(std::ostream& o, BankDeposit& b);
+
 
 
 };
