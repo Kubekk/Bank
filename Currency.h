@@ -19,7 +19,7 @@ public:
     /*!
      *
      * setting rate of the currency
-     * @param rate
+     * @param rate - cost in specified currency of any material, for example: gold, patroelum
      */
     inline void rate(const float rate) {
         rate_ = rate;
@@ -44,7 +44,7 @@ public:
 
     bool operator<(const Currency &currency);
     bool operator>(const Currency &currency);
-    const Currency& operator=(const Currency &currency);
+    Currency& operator=(Currency &currency);
     friend std::ostream& operator<<(std::ostream &o, Currency &c);
     friend std::ostream& operator<<(std::ostream &o, const Currency &c);
 

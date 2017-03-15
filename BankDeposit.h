@@ -22,16 +22,16 @@ class BankDeposit {
 
 
 public:
-    BankDeposit(Currency *initCurrency)
+    BankDeposit(Currency &initCurrency)
             : BankDeposit(0.0f, 0.0f, getDefaultDuration(), initCurrency, getDefaultCapitalizationTime()) {
     }
 
-    BankDeposit(float initBalance, float initInterestRate, unsigned const initDuration,const Currency *initCurrency, unsigned const initCapitalizationTime)
-            : interestRate_(initInterestRate), duration_(initDuration), capitalizationTime_(initCapitalizationTime), currency_(initCurrency) {
+    BankDeposit(float initBalance, float initInterestRate, unsigned const initDuration,const Currency &initCurrency, unsigned const initCapitalizationTime)
+            : interestRate_(initInterestRate), duration_(initDuration), capitalizationTime_(initCapitalizationTime), currency_(&initCurrency) {
             balance_ = Utility::roundTo2Places(initBalance);
     }
 
-    BankDeposit(const BankDeposit &b) : BankDeposit(b.balance_, b.interestRate_, b.duration_, b.currency_, b.capitalizationTime_) {}
+    BankDeposit(const BankDeposit &b) : BankDeposit(b.balance_, b.interestRate_, b.duration_, *(b.currency_), b.capitalizationTime_) {}
 
     ~BankDeposit() {}
 
@@ -54,11 +54,10 @@ public:
 
     /*!
      * Change currency of the bank deposit (change the balance)
-     * @param currency - pointer to currency to which account has to be changed
+     * @param currency - currency to which account has to be changed
      */
-    void changeCurrency(const Currency *currency);
+    void changeCurrency(const Currency &currency);
 
-    void ifNullPtrInitCurreny(const Currency *currency);
 
     /*!
      * Setting new interest rate
