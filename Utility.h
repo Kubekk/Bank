@@ -14,9 +14,11 @@ public:
      * @param number - float number to be rounded
      * @return float expressed in two decimal places
      */
-    static float roundTo2Places(float number) {
+    static float roundTo2Places(const float number) {
         return static_cast<float>(floor(number * 100) / 100.0f);
     }
+
+
 
 
 

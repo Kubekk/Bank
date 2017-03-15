@@ -13,14 +13,15 @@ class Currency {
     float rate_;
 
 public:
-    Currency(std::string name, std::string shortcut, float rate): rate_(rate), shortcut_(shortcut), name_(name) {};
+    Currency(const std::string name, const std::string shortcut, float rate): rate_(rate), shortcut_(shortcut), name_(name) {}
+    ~Currency() {}
 
     /*!
      *
      * setting rate of the currency
      * @param rate
      */
-    inline void rate(float rate) {
+    inline void rate(const float rate) {
         rate_ = rate;
     }
 
@@ -32,6 +33,11 @@ public:
         return shortcut_;
     }
 
+    /*!
+     * checking if one Currency is equal to another, they have to have equal rate, name and shourtcut
+     * @param currency
+     * @return true - equal, false - not equal
+     */
     bool operator==(const Currency &currency) {
         return (currency.rate_ == rate_ && name_ == currency.name_ && shortcut_ == currency.shortcut_);
     }
