@@ -20,21 +20,24 @@ int main() {
     Currency zloty = Currency("Zloty", "zl", 0.35f);
     Currency currencies[] = {dollar, euro, zloty};
 
-   // BankDeposit(1000, 0.05f, 90, dollar, 30);
+    BankDeposit depositGreater =  BankDeposit(1000, 0.05f, 90, dollar, 30);
+
 
     UserInput userInput = UserInput::getInstance();
-    userInput.startInteraction(currencies, 3);
+   // userInput.startInteraction(currencies, 3);
 
 
 
 
-    /*
-
-    BankDeposit bankDeposit(1000, 0.05f, 90, dollar, 30);
-    std::cout << bankDeposit;
     assert(dollar < euro);
     assert(dollar > zloty);
     assert(dollar == dollar);
+
+
+
+    BankDeposit bankDeposit(1000, 0.05f, 90, dollar, 30);
+    std::cout << bankDeposit;
+
 
     std::cout << bankDeposit.estimateEarnings() << std::endl;
 
@@ -47,7 +50,7 @@ int main() {
     bankDeposit.changeCurrency(zloty);
     std::cout << bankDeposit;
 
-    */
+
 
     return 0;
 

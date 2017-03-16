@@ -22,5 +22,10 @@ void BankDeposit::changeCurrency(const Currency &currency) {
 std::ostream& operator<<(std::ostream &o, BankDeposit &b) {
     o << "Balance: " << b.balance_ << " " << b.currency_->shortcut() << std::endl;
     o << "Interest rate: " << b.interestRate_ * 100 << "%" << std::endl;
+    o << "Duration: " << b.duration_ << " days" << std::endl;
     return o;
+}
+
+bool BankDeposit::operator<(BankDeposit &b) {
+    //to do
 }

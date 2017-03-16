@@ -29,6 +29,7 @@ bool UserInput::checkCinIfFailAndClear() {
         cin.ignore();
         return true;
     }
+    //cin.clear();
     return false;
 }
 
@@ -71,6 +72,8 @@ void UserInput::manageCreateDepositData() {
     std::cout << "Creating new deposit" << std::endl << std::endl;
 
     deposits.push_back(new BankDeposit(readBalance(), readInterestRate(), readDuration(), readCurrency(), readCapitalizationTime()));
+    std::cout << (*deposits[deposits.size() - 1]);
+
 }
 
 void UserInput::manageChangeCurrencyData() {
@@ -91,12 +94,16 @@ void UserInput::manageEstimateEarnings() {
 
 float UserInput::readBalance() {
     std::cout << "Please type balance which has to be set" << std::endl;
-    return readFloatNumber();
+    float number;
+    while((number = readFloatNumber()) == 0);
+    return number;
 }
 
 float UserInput::readInterestRate() {
     std::cout << "Please type interest rate which has to be set" << std::endl;
-    return readFloatNumber();
+    float number;
+    while((number = readFloatNumber()) == 0);
+    return number;
 }
 
 const unsigned int UserInput::readDuration() {
@@ -104,7 +111,7 @@ const unsigned int UserInput::readDuration() {
     int dur;
     while ((dur = readIntegerNumber()) <= 0)
         std::cout << "Duration have to be greater than 0!" << std::endl;
-    return static_cast<unsigned>(dur);
+    return static_cast<unsigned> (dur);
 }
 
 const Currency& UserInput::readCurrency() {

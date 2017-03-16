@@ -91,5 +91,6 @@ public:
     friend std::ostream& operator<<(std::ostream& o, BankDeposit& b);
 
 
+    bool operator<(BankDeposit &b);
 
 };
